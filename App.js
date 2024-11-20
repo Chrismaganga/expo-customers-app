@@ -1,23 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import { StatusBar } from 'expo-status-bar';
-import Customers from './app/components/Customers';
+import App from './App'
+import { store } from './src/store/store'
+import { Provider } from 'react-redux'
+import MainTab from './src/navigation/index.js'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>customers-relations@24</Text>
-      <Customers/>
-      <StatusBar style="auto" />   
-       </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+ReactDOM.render(
+  <Provider store={store}>
+  <App/>
+    <MainTab />
+  </Provider>,
+  document.getElementById('root')
+)

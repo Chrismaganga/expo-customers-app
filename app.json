@@ -1,30 +1,9 @@
 {
   "expo": {
-    "name": "expo-customer-app",
-     "scheme": "expo-customers-app",
+    "name": "expo-customers-app",
+     "scheme": "expo-customers",
     "slug": "expo-customer-app",
     "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "newArchEnabled": true,
-    "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      }
-    },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
     "extra": {
       "eas": {
         "projectId": "0bc4d13f-8ec0-472f-abef-a332ff64c7c3"
@@ -33,6 +12,12 @@
     "owner": "maganga",
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "web": {
+    "bundler": "metro"
   }
-}
+
+    }
+    
+  }
+
