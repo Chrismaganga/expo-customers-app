@@ -1,16 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from './src/store/store';
+import { ExpoRoot } from 'expo-router';
 
-import App from './App'
-import { store } from './src/store/store'
-import { Provider } from 'react-redux'
-import MainTab from './src/navigation/index.js'
-
-
-ReactDOM.render(
-  <Provider store={store}>
-  <App/>
-    <MainTab />
-  </Provider>,
-  document.getElementById('root')
-)
+export default function App() {
+  return (
+    <Provider store={store}>
+      <ExpoRoot context={require.context('./src/screens', true, /^\.\/.*\.(js|jsx|ts|tsx)$/)} />
+    </Provider>
+  );
+}

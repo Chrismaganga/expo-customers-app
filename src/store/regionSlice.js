@@ -1,36 +1,49 @@
 import { createSlice } from '@reduxjs/toolkit';
-import customers from '../utils/customers';
 
 const initialState = {
-  regions: customers 
+    regions: [],
+    loading: false,
+    error: null
 };
 
 const regionSlice = createSlice({
-  name: 'regions',
-  initialState,
-  reducers: {
-    addRegion: (state, action) => {
-      state.regions.push(action.payload);
-    },
-    removeRegion: (state, action) => {
-      state.regions = state.regions.filter(region => region.id !== action.payload);
-    },
-    addCustomerToRegion: (state, action) => {
-      const { regionId, customerId } = action.payload;
-      const region = state.regions.find(region => region.id === regionId);
-      if (region) {
-        region.customers.push(customerId);
-      }
-    },
-    removeCustomerFromRegion: (state, action) => {
-      const { regionId, customerId } = action.payload;
-      const region = state.regions.find(region => region.id === regionId);
-      if (region) {
-        region.customers = region.customers.filter(id => id !== customerId);
-      }
+    name: 'region',
+    initialState,
+    reducers: {
+        setRegions: (state, action) => {
+            state.regions = action.payload;
+            state.loading = false;
+            state.error = null;
+        },
+        setLoading: (state, action) => {
+            state.loading = action.payload;
+        },
+        setError: (state, action) => {
+            state.error = action.payload;
+            state.loading = false;
+        },
+        addRegion: (state, action) => {
+            state.regions.push(action.payload);
+        },
+        updateRegion: (state, action) => {
+            const index = state.regions.findIndex(region => region.id === action.payload.id);
+            if (index !== -1) {
+                state.regions[index] = action.payload;
+            }
+        },
+        deleteRegion: (state, action) => {
+            state.regions = state.regions.filter(region => region.id !== action.payload);
+        }
     }
-  }
 });
-export const { addRegion, removeRegion, addCustomerToRegion, removeCustomerFromRegion } = regionSlice.actions;
+
+export const { 
+    setRegions, 
+    setLoading, 
+    setError, 
+    addRegion, 
+    updateRegion, 
+    deleteRegion 
+} = regionSlice.actions;
 
 export default regionSlice.reducer;
